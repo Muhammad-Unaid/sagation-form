@@ -1,44 +1,46 @@
-function validateName() {
-  let name = document.getElementById("name").value;
-  let nameError = document.getElementById("nameError");
+        
+var nameInp = document.getElementById("name");
+var emailInp = document.getElementById("email");
+var passwordInp = document.getElementById("password");
+var gender = document.getElementsByName("gender");
+var errName = document.getElementsByClassName('error');
 
-  // Reset error
-  nameError.textContent = "";
+function submitForm(e){
+    e.preventDefault();
+    
+    if(nameInp.value.length <3){
+        errName[0].style.display= 'block';
+        errName[0].innerHTML="Enter Correct Name" 
+    }
+    if(nameInp.value.length <1){
+        errName[0].style.display= 'block';
+        errName[0].innerHTML="Name is required";
+    }
+    if(passwordInp.value.length <1){
+        errName[2].style.display= 'block';
+        errName[2].innerHTML="Password is required" 
+    }
+    if(passwordInp.value.length <9){
+        errName[2].style.display= 'block';
+        errName[2].innerHTML="Password Is Weak"
+       
+    }
+    if(emailInp.value.length <1){
+        errName[1].style.display= 'block';
+        errName[1].innerHTML="Email is required" 
 
-  // Name validation
-  if (name.length < 3) {
-    nameError.textContent = "Name should be greater than 3 characters.";
-  }
-}
+    }
+     
+    if(emailInp.value.indexof('@')){
+        errName[1].style.display= 'block';
+        errName[1].innerHTML="Email is invalid " 
+    }
 
-function validatePassword() {
-  let password = document.getElementById("password").value;
-  let passwordError = document.getElementById("passwordError");
+   
+    if(!gender.checked){
+        errName[3].style.display= 'block';
+        errName[3].innerHTML="Gender is required" 
+    }
+   
 
-  // Reset error
-  passwordError.textContent = "";
-
-  // Password validation
-  if (password.length < 6) {
-    passwordError.textContent = "Your password is weak.";
-  }
-}
-
-function validateForm() {
-  // Run both validations when submit is clicked
-  validateName();
-  validatePassword();
-}
-
-function togglePassword() {
-  let passwordInput = document.getElementById("password");
-  let toggleBtn = document.querySelector(".toggle-password");
-
-  if (passwordInput.type === "password") {
-    passwordInput.type = "text";
-    toggleBtn.textContent = "Hide";
-  } else {
-    passwordInput.type = "password";
-    toggleBtn.textContent = "Show";
-  }
 }
